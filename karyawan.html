@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Yuna Cipta Printing App - Karyawan</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="logo-container">
+          <img
+            alt="Company Logo"
+            height="50"
+            src="images/download.png"
+            width="50"
+          />
+          <div class="company-name">
+            <h2>Yuna Cipta</h2>
+            <h2>Printing</h2>
+          </div>
+        </div>
+        <ul>
+          <li><a href="#"><i class="fas fa-home"></i>Dashboard</a></li>
+          <li>
+            <a href="./index.html">
+              <i class="fas fa-file-invoice-dollar"></i>Penggajian
+            </a>
+          </li>
+          <li>
+            <a class="active" href="./karyawan.html">
+              <i class="fas fa-users"></i>Karyawan
+            </a>
+          </li>
+          <li><a href="#"><i class="fas fa-warehouse"></i>Gudang</a></li>
+          <li><a href="#"><i class="fas fa-sign-out-alt"></i>Keluar</a></li>
+        </ul>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <div class="header">
+          <h1>Form Karyawan</h1>
+        </div>
+
+        <!-- Form untuk menambah karyawan -->
+        <form id="employeeForm">
+          <div class="form-group">
+            <label for="nama">Nama Karyawan:</label>
+            <input type="text" id="nama" name="nama" required />
+          </div>
+          <div class="form-group">
+            <label for="gajiHarian">Gaji Harian:</label>
+            <input type="number" id="gajiHarian" name="gajiHarian" required />
+          </div>
+          <div class="form-group">
+            <label for="upahLembur">Upah Lembur Perjam:</label>
+            <input type="number" id="upahLembur" name="upahLembur" required />
+          </div>
+          <div class="form-group">
+            <label for="kasbon">Kasbon:</label>
+            <input type="number" id="kasbon" name="kasbon" required />
+          </div>
+          <div class="form-group">
+            <label for="medical">Medical:</label>
+            <input type="number" id="medical" name="medical" required />
+          </div>
+          <button type="submit">Simpan</button>
+        </form>
+
+        <!-- Tabel untuk menampilkan data karyawan -->
+        <div class="employee-table">
+          <h2>Daftar Karyawan</h2>
+          <table id="employeeTable">
+            <thead>
+              <tr>
+                <th>Nama Karyawan</th>
+                <th>Gaji Harian</th>
+                <th>Upah Lembur</th>
+                <th>Kasbon</th>
+                <th>Medical</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data karyawan akan ditampilkan di sini -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>

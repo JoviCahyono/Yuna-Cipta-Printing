@@ -1,0 +1,30 @@
+{
+  "name": "yuna-cipta-printing",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . yuna-cipta-printing --platform=win32 --arch=x64 --out=dist/ --icon=icon.ico"
+  },
+  "build": {
+    "appId": "com.yuna-cipta-printing",
+    "productName": "Yuna Cipta Printing",
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "csv-parse": "^5.6.0",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "sqlite3": "^5.1.7",
+    "xlsx": "^0.18.5"
+  }
+}
