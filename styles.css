@@ -295,3 +295,255 @@ th select:hover {
 input:hover + .input-info {
   display: block; /* Tampilkan pesan info saat input di-hover */
 }
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  text-align: center;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #555;
+}
+
+.card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.charts {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container {
+  width: 80%;
+  margin: 0 auto;
+}
+/* ====================== DASHBOARD STYLES ====================== */
+
+.dashboard {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h1 {
+  font-size: 24px;
+  color: #4a4a8a;
+  margin-bottom: 20px;
+}
+
+/* Ringkasan Data */
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.summary .card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.summary .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.summary .card h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #555;
+}
+
+.summary .card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4a4a8a;
+  margin: 10px 0 0;
+}
+
+/* Grafik */
+.charts {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.charts h2 {
+  font-size: 20px;
+  color: #4a4a8a;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Tabel Data */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+table th {
+  background-color: #f0f0f5;
+  color: #4a4a8a;
+  font-weight: 500;
+}
+
+table td {
+  color: #555;
+}
+
+table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Tombol Aksi */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.actions button {
+  background-color: #4a4a8a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.actions button:hover {
+  background-color: #3a3a7a;
+}
+
+/* Pagination */
+.pagination {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.pagination span {
+  color: #a0a0a0;
+  font-size: 14px;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  width: 50%;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+  font-size: 20px;
+  color: #4a4a8a;
+  margin-bottom: 20px;
+}
+
+.modal-content .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content .close:hover,
+.modal-content .close:focus {
+  color: #4a4a8a;
+}
+
+/* Form Tiga Kolom */
+.three-column-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.three-column-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.three-column-form .form-group label {
+  font-size: 14px;
+  color: #4a4a8a;
+  margin-bottom: 5px;
+}
+
+.three-column-form .form-group input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.three-column-form button {
+  grid-column: span 3;
+  background-color: #4a4a8a;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.three-column-form button:hover {
+  background-color: #3a3a7a;
+}
