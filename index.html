@@ -70,7 +70,17 @@
 
               <div class="form-group">
                 <label for="hariKerja">Hari Kerja:</label>
-                <input type="number" id="hariKerja" name="hariKerja" required />
+                <input
+                  type="number"
+                  id="hariKerja"
+                  name="hariKerja"
+                  required
+                  min="0"
+                  max="7"
+                />
+                <small id="hariKerjaInfo" class="input-info"
+                  >Masukkan jumlah hari kerja antara 0 dan 7.</small
+                >
               </div>
 
               <div class="form-group">
@@ -85,12 +95,32 @@
 
               <div class="form-group">
                 <label for="lembur">Lembur Mingguan:</label>
-                <input type="number" id="lembur" name="lembur" required />
+                <input
+                  type="number"
+                  id="lembur"
+                  name="lembur"
+                  required
+                  min="0"
+                  max="7"
+                />
+                <small id="lemburInfo" class="input-info"
+                  >Masukkan jumlah lembur mingguan antara 0 dan 7.</small
+                >
               </div>
 
               <div class="form-group">
                 <label for="jamLembur">Jam Lembur:</label>
-                <input type="number" id="jamLembur" name="jamLembur" required />
+                <input
+                  type="number"
+                  id="jamLembur"
+                  name="jamLembur"
+                  required
+                  min="0"
+                  max="24"
+                />
+                <small id="jamLemburInfo" class="input-info"
+                  >Masukkan jumlah jam lembur antara 0 dan 24.</small
+                >
               </div>
 
               <div class="form-group">
@@ -123,12 +153,13 @@
           </div>
         </div>
 
-        <!-- Modal Edit -->
-        <div id="editDataModal" class="modal">
+        <!-- Modal Edit Penggajian -->
+        <div id="editPenggajianModal" class="modal">
           <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Edit Data Penggajian</h2>
-            <form id="editDataForm">
+            <form id="editPenggajianForm">
+              <input type="hidden" id="editPenggajianId" />
               <label for="editTanggal">Tanggal</label>
               <input type="date" id="editTanggal" required />
               <label for="editNama">Nama Karyawan</label>
@@ -137,11 +168,11 @@
               <input type="number" id="editHariKerja" required />
               <label for="editGajiPerHari">Gaji Per Hari</label>
               <input type="number" id="editGajiPerHari" required />
-              <label for="editLembur">Lembur</label>
+              <label for="editLembur">Lembur (Hari)</label>
               <input type="number" id="editLembur" required />
               <label for="editJamLembur">Jam Lembur</label>
               <input type="number" id="editJamLembur" required />
-              <label for="editUpahLembur">Upah Lembur Per Jam</label>
+              <label for="editUpahLembur">Upah Lembur per Jam</label>
               <input type="number" id="editUpahLembur" required />
               <label for="editKasbon">Kasbon</label>
               <input type="number" id="editKasbon" required />
@@ -180,7 +211,7 @@
           <button id="importDataBtn">
             <i class="fas fa-file-import"> </i> Import Data
           </button>
-          
+
           <input
             type="file"
             id="fileInput"

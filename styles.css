@@ -285,3 +285,13 @@ th select {
 th select:hover {
   background-color: #e0e0e0;
 }
+
+.input-info {
+  color: gray;
+  font-size: 12px;
+  display: none; /* Sembunyikan pesan info secara default */
+}
+
+input:hover + .input-info {
+  display: block; /* Tampilkan pesan info saat input di-hover */
+}

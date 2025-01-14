@@ -121,3 +121,37 @@ function updateKasbon() {
   }
 }
 
+// Ambil elemen input hari kerja
+const hariKerjaInput = document.getElementById('hariKerja');
+
+// Fungsi untuk membatasi input agar tetap dalam rentang 1-7
+hariKerjaInput.addEventListener('input', function () {
+  let value = parseInt(hariKerjaInput.value);
+  if (value < 1) {
+    hariKerjaInput.value = 0; // Jika nilai kurang dari 1, atur menjadi 1
+  } else if (value > 7) {
+    hariKerjaInput.value = 7; // Jika nilai lebih dari 7, atur menjadi 7
+  }
+});
+
+// Validasi input untuk Lembur Mingguan (1 - 7)
+const lemburInput = document.getElementById('lembur');
+lemburInput.addEventListener('input', function () {
+  let value = parseInt(lemburInput.value);
+  if (value < 1) {
+    lemburInput.value = 0; // Jika nilai kurang dari 1, atur menjadi 1
+  } else if (value > 7) {
+    lemburInput.value = 7; // Jika nilai lebih dari 7, atur menjadi 7
+  }
+});
+
+// Validasi input untuk Jam Lembur (1 - 24)
+const jamLemburInput = document.getElementById('jamLembur');
+jamLemburInput.addEventListener('input', function () {
+  let value = parseInt(jamLemburInput.value);
+  if (value < 1) {
+    jamLemburInput.value = 0; // Jika nilai kurang dari 1, atur menjadi 1
+  } else if (value > 24) {
+    jamLemburInput.value = 24; // Jika nilai lebih dari 24, atur menjadi 24
+  }
+});
