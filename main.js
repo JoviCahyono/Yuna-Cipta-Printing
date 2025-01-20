@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const sqlite3 = require("sqlite3").verbose();
+const path = require("path");
 
 // Buat atau sambungkan ke database
 const db = new sqlite3.Database("./penggajian.db", (err) => {

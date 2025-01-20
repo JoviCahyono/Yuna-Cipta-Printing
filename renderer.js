@@ -593,4 +593,3 @@ const chartConfig = {
 const gajiChart = new Chart(ctx, chartConfig);
 
 //============================================= kasbon =============================
-
