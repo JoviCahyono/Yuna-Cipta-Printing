@@ -31,7 +31,9 @@
           </div>
         </div>
         <ul>
-          <li><a href="./dashboard.html"><i class="fas fa-home"></i>Dashboard</a></li>
+          <li>
+            <a href="./dashboard.html"><i class="fas fa-home"></i>Dashboard</a>
+          </li>
           <li>
             <a href="./index.html">
               <i class="fas fa-file-invoice-dollar"></i>Penggajian
@@ -42,8 +44,12 @@
               <i class="fas fa-users"></i>Karyawan
             </a>
           </li>
-          <li><a href="#"><i class="fas fa-warehouse"></i>Gudang</a></li>
-          <li><a href="#"><i class="fas fa-sign-out-alt"></i>Keluar</a></li>
+          <li>
+            <a href="#"><i class="fas fa-warehouse"></i>Gudang</a>
+          </li>
+          <li>
+            <a href="#"><i class="fas fa-sign-out-alt"></i>Keluar</a>
+          </li>
         </ul>
       </div>
 
@@ -78,6 +84,33 @@
           <button type="submit">Simpan</button>
         </form>
 
+        <!-- Modal Edit Karyawan -->
+        <div id="editEmployeeModal" class="modal">
+          <div class="modal-content">
+            <!-- Tombol Close -->
+            <span class="close">&times;</span>
+            <h2>Edit Karyawan</h2>
+            <form id="editEmployeeForm">
+              <label for="editNama">Nama:</label>
+              <input type="text" id="editNama" required />
+
+              <label for="editGajiHarian">Gaji Harian:</label>
+              <input type="number" id="editGajiHarian" required />
+
+              <label for="editUpahLembur">Upah Lembur:</label>
+              <input type="number" id="editUpahLembur" required />
+
+              <label for="editKasbon">Kasbon:</label>
+              <input type="number" id="editKasbon" required />
+
+              <label for="editMedical">Medical:</label>
+              <input type="number" id="editMedical" required />
+
+              <button type="submit">Simpan Perubahan</button>
+            </form>
+          </div>
+        </div>
+
         <!-- Tabel untuk menampilkan data karyawan -->
         <div class="employee-table">
           <h2>Daftar Karyawan</h2>
@@ -92,13 +125,21 @@
                 <th>Aksi</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="employeeTableBody">
               <!-- Data karyawan akan ditampilkan di sini -->
             </tbody>
           </table>
+
+          <!-- Pagination -->
+          <div id="pagination">
+            <button id="prevBtn">Previous</button>
+            <span id="pageNumber">Page 1</span>
+            <button id="nextBtn">Next</button>
+          </div>
         </div>
       </div>
     </div>
-    <script src="renderer.js"></script>
   </body>
+  <script src="renderer.js"></script>
+  <script src="script.js"></script>
 </html>

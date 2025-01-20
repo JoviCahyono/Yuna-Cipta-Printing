@@ -268,6 +268,7 @@ if (openModal && modal && closeModal) {
   });
 }
 
+
 // ====================== HANDLER KARYAWAN ======================
 
 // Cek apakah halaman ini adalah karyawan.html dengan memeriksa keberadaan elemen form
@@ -465,6 +466,83 @@ if (employeeForm && employeeTableBody) {
   });
 }
 
+
+employeeTableBody.addEventListener("click", (e) => {
+  if (e.target && e.target.classList.contains("edit-btn")) {
+    const row = e.target.closest("tr");
+    const employeeId = row.getAttribute("data-id");
+
+    // Memuat data karyawan ke form edit
+    const nama = row.children[0].innerText;
+    const gajiHarian = parseFloat(row.children[1].innerText.replace(/Rp|,/g, ""));
+    const upahLembur = parseFloat(row.children[2].innerText.replace(/Rp|,/g, ""));
+    const kasbon = parseFloat(row.children[3].innerText.replace(/Rp|,/g, ""));
+    const medical = parseFloat(row.children[4].innerText.replace(/Rp|,/g, ""));
+
+    // Tampilkan modal untuk edit
+    document.getElementById("editEmployeeModal").style.display = "block";
+
+    // Masukkan data ke form edit
+    document.getElementById("editNama").value = nama;
+    document.getElementById("editGajiHarian").value = gajiHarian;
+    document.getElementById("editUpahLembur").value = upahLembur;
+    document.getElementById("editKasbon").value = kasbon;
+    document.getElementById("editMedical").value = medical;
+
+    // Menangani pengiriman form edit
+    document.getElementById("editEmployeeForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const namaBaru = document.getElementById("editNama").value.trim();
+      const gajiHarianBaru = parseFloat(document.getElementById("editGajiHarian").value);
+      const upahLemburBaru = parseFloat(document.getElementById("editUpahLembur").value);
+      const kasbonBaru = parseFloat(document.getElementById("editKasbon").value);
+      const medicalBaru = parseFloat(document.getElementById("editMedical").value);
+
+      if (
+        !namaBaru ||
+        isNaN(gajiHarianBaru) ||
+        isNaN(upahLemburBaru) ||
+        isNaN(kasbonBaru) ||
+        isNaN(medicalBaru)
+      ) {
+        alert("Semua field harus diisi dengan angka yang valid.");
+        return;
+      }
+
+      // Kirim data yang diperbarui ke main process
+      ipcRenderer.send("updateEmployee", {
+        id: employeeId,
+        nama: namaBaru,
+        gajiHarian: gajiHarianBaru,
+        upahLembur: upahLemburBaru,
+        kasbon: kasbonBaru,
+        medical: medicalBaru,
+      });
+
+      // Sembunyikan modal setelah edit
+      document.getElementById("editEmployeeModal").style.display = "none";
+    });
+  }
+});
+
+const modalEditKaryawan = document.getElementById("editEmployeeModal");
+const closeModalEditKaryawan = document.querySelector(".close"); // Menggunakan kelas 'close'
+
+if (modalEditKaryawan && closeModalEditKaryawan) {
+  closeModalEditKaryawan.addEventListener("click", () => {
+    modalEditKaryawan.style.display = "none";
+  });
+
+  // Menutup modal ketika pengguna mengklik area luar modal
+  window.addEventListener("click", (e) => {
+    if (e.target === modalEditKaryawan) {
+      modalEditKaryawan.style.display = "none";
+    }
+  });
+}
+
+
 // =================== DASHBOARD ======================
 const ctx = document.getElementById("gajiChart").getContext("2d");
 
@@ -513,3 +591,6 @@ const chartConfig = {
 
 // Buat grafik
 const gajiChart = new Chart(ctx, chartConfig);
+
+//============================================= kasbon =============================
+

@@ -122,10 +122,10 @@ function updateKasbon() {
 }
 
 // Ambil elemen input hari kerja
-const hariKerjaInput = document.getElementById('hariKerja');
+const hariKerjaInput = document.getElementById("hariKerja");
 
 // Fungsi untuk membatasi input agar tetap dalam rentang 1-7
-hariKerjaInput.addEventListener('input', function () {
+hariKerjaInput.addEventListener("input", function () {
   let value = parseInt(hariKerjaInput.value);
   if (value < 1) {
     hariKerjaInput.value = 0; // Jika nilai kurang dari 1, atur menjadi 1
@@ -135,8 +135,8 @@ hariKerjaInput.addEventListener('input', function () {
 });
 
 // Validasi input untuk Lembur Mingguan (1 - 7)
-const lemburInput = document.getElementById('lembur');
-lemburInput.addEventListener('input', function () {
+const lemburInput = document.getElementById("lembur");
+lemburInput.addEventListener("input", function () {
   let value = parseInt(lemburInput.value);
   if (value < 1) {
     lemburInput.value = 0; // Jika nilai kurang dari 1, atur menjadi 1
@@ -146,8 +146,8 @@ lemburInput.addEventListener('input', function () {
 });
 
 // Validasi input untuk Jam Lembur (1 - 24)
-const jamLemburInput = document.getElementById('jamLembur');
-jamLemburInput.addEventListener('input', function () {
+const jamLemburInput = document.getElementById("jamLembur");
+jamLemburInput.addEventListener("input", function () {
   let value = parseInt(jamLemburInput.value);
   if (value < 1) {
     jamLemburInput.value = 0; // Jika nilai kurang dari 1, atur menjadi 1
@@ -155,4 +155,9 @@ jamLemburInput.addEventListener('input', function () {
     jamLemburInput.value = 24; // Jika nilai lebih dari 24, atur menjadi 24
   }
 });
+
+function logout() {
+  // Kirim pesan ke main process untuk melakukan logout
+  window.location.href = "login.html";
+}
 

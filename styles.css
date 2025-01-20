@@ -78,8 +78,6 @@ ul li a.active {
   padding-left: 20px; /* Memberikan padding tambahan untuk elemen aktif agar tidak bergeser */
 }
 
-
-
 .content {
   flex: 1;
   padding: 20px;

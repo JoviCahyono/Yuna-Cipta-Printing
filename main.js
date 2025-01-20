@@ -10,6 +10,47 @@ const db = new sqlite3.Database("./penggajian.db", (err) => {
   }
 });
 
+// Handler untuk membuat jendela
+function createWindow() {
+  const win = new BrowserWindow({
+    width: 1280,
+    height: 720,
+    minWidth: 800,
+    minHeight: 600,
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+  win.setResizable(true);
+
+  const { width, height } = win.getBounds();
+  win.setSize(width * 0.8, height * 0.8);
+
+  // Muat halaman sesuai dengan yang diakses
+  // Misalnya, default ke index.html
+  win.loadFile("index.html");
+
+  win.maximize();
+
+  // Buka DevTools jika diperlukan
+  // win.webContents.openDevTools();
+}
+
+app.whenReady().then(() => {
+  createWindow();
+
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
+});
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") app.quit();
+});
+
 // Inisialisasi database: buat tabel jika belum ada
 db.serialize(() => {
   // Tabel penggajian
@@ -60,46 +101,6 @@ db.serialize(() => {
   );
 });
 
-// Handler untuk membuat jendela
-function createWindow() {
-  const win = new BrowserWindow({
-    width: 1280,
-    height: 720,
-    minWidth: 800,
-    minHeight: 600,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
-      contextIsolation: false,
-    },
-  });
-
-  win.setResizable(true);
-
-  const { width, height } = win.getBounds();
-  win.setSize(width * 0.8, height * 0.8);
-
-  // Muat halaman sesuai dengan yang diakses
-  // Misalnya, default ke index.html
-  win.loadFile("index.html");
-
-  win.maximize();
-
-  // Buka DevTools jika diperlukan
-  // win.webContents.openDevTools();
-}
-
-app.whenReady().then(() => {
-  createWindow();
-
-  app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
-});
-
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") app.quit();
-});
 
 // ====================== HANDLER PENGGAJIAN ======================
 
@@ -183,6 +184,7 @@ ipcMain.on("hapusData", (event, rowId) => {
   });
 });
 
+
 // ====================== HANDLER KARYAWAN ======================
 
 // Handler untuk menambah karyawan
@@ -264,67 +266,6 @@ ipcMain.on("updateEmployee", (event, employee) => {
   );
 });
 
-// import
-const XLSX = require("xlsx");
-const path = require("path");
 
-// Fungsi untuk mengimpor data dari file Excel ke database
-function importDataFromExcel(filePath) {
-  // Membaca file Excel
-  const workbook = XLSX.readFile(filePath);
-  const sheet_name_list = workbook.SheetNames;
-  const sheet = workbook.Sheets[sheet_name_list[0]];
 
-  // Mengubah data sheet menjadi JSON
-  const data = XLSX.utils.sheet_to_json(sheet);
-
-  // Memasukkan data ke dalam database
-  data.forEach((row) => {
-    const {
-      tanggal,
-      nama,
-      hariKerja,
-      gajiPerHari,
-      lembur,
-      jamLembur,
-      upahLembur,
-      kasbon,
-      kasbonMotor,
-      gaji,
-    } = row;
-
-    // Menyiapkan query untuk memasukkan data
-    const sql = `
-      INSERT INTO penggajian (
-        tanggal_gajian, nama_karyawan, hari_kerja, gaji_perhari, lembur_mingguan, 
-        jam_lembur, upah_lembur_perjam, kasbon, kasbon_motor, gaji
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-
-    // Eksekusi query untuk setiap baris data
-    db.run(
-      sql,
-      [
-        tanggal,
-        nama,
-        hariKerja,
-        gajiPerHari,
-        lembur,
-        jamLembur,
-        upahLembur,
-        kasbon,
-        kasbonMotor,
-        gaji,
-      ],
-      function (err) {
-        if (err) {
-          console.error("Error inserting data: ", err.message);
-        } else {
-          console.log(`Data inserted for ${nama}`);
-        }
-      }
-    );
-  });
-}
-
-// ========================== dashboard =================================
+// ========================== kasbon =================================
