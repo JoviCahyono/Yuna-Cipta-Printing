@@ -110,6 +110,87 @@ if (openModal && modal && closeModal) {
     ipcRenderer.send("muatData");
   });
 
+  // Menangani event submit form edit penggajian
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("editPenggajianModal");
+    const closeModalBtn = modal.querySelector(".close");
+    const editForm = document.getElementById("editPenggajianForm");
+    const tableBody = document.querySelector("tbody");
+
+    // Event delegation untuk tombol "Edit"
+    tableBody.addEventListener("click", (event) => {
+      if (event.target.classList.contains("edit-btn")) {
+        const row = event.target.closest("tr"); // Ambil baris terkait
+        const id = row.dataset.id; // Ambil ID dari atribut data-id
+
+        // Isi form modal dengan data dari baris
+        document.getElementById("editPenggajianId").value = id;
+        document.getElementById("editTanggal").value =
+          row.children[0].textContent;
+        document.getElementById("editNama").value = row.children[1].textContent;
+        document.getElementById("editHariKerja").value = parseInt(
+          row.children[2].textContent
+        );
+        document.getElementById("editGajiPerHari").value = parseInt(
+          row.children[3].textContent.replace("Rp", "").replaceAll(",", "")
+        );
+        document.getElementById("editLembur").value = parseInt(
+          row.children[4].textContent
+        );
+        document.getElementById("editJamLembur").value = parseInt(
+          row.children[5].textContent
+        );
+        document.getElementById("editUpahLembur").value = parseInt(
+          row.children[6].textContent.replace("Rp", "").replaceAll(",", "")
+        );
+        document.getElementById("editKasbon").value = parseInt(
+          row.children[7].textContent.replace("Rp", "").replaceAll(",", "")
+        );
+        document.getElementById("editKasbonMotor").value = parseInt(
+          row.children[8].textContent.replace("Rp", "").replaceAll(",", "")
+        );
+
+        // Tampilkan modal
+        modal.style.display = "block";
+      }
+    });
+
+    // Tutup modal
+    closeModalBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    // Tutup modal jika klik di luar konten modal
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Simpan perubahan (contoh event submit)
+    editForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = {
+        id: document.getElementById("editPenggajianId").value,
+        tanggal: document.getElementById("editTanggal").value,
+        nama: document.getElementById("editNama").value,
+        hariKerja: document.getElementById("editHariKerja").value,
+        gajiPerHari: document.getElementById("editGajiPerHari").value,
+        lembur: document.getElementById("editLembur").value,
+        jamLembur: document.getElementById("editJamLembur").value,
+        upahLembur: document.getElementById("editUpahLembur").value,
+        kasbon: document.getElementById("editKasbon").value,
+        kasbonMotor: document.getElementById("editKasbonMotor").value,
+      };
+
+      // Kirim data ke proses utama atau lakukan sesuatu
+      console.log("Data yang disimpan:", data);
+
+      // Tutup modal
+      modal.style.display = "none";
+    });
+  });
+
   // Mendapatkan notifikasi data berhasil disimpan
   ipcRenderer.on("dataTersimpan", (event, data) => {
     const {
@@ -384,16 +465,32 @@ if (employeeForm && employeeTableBody) {
   });
 }
 
-// =================== DASHBOARD ====================== 
+// =================== DASHBOARD ======================
 const ctx = document.getElementById("gajiChart").getContext("2d");
 
 // Data dummy untuk grafik (contoh)
 const chartData = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
+  labels: [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Mei",
+    "Jun",
+    "Jul",
+    "Agu",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Des",
+  ],
   datasets: [
     {
       label: "Total Gaji per Bulan",
-      data: [5000000, 6000000, 5500000, 7000000, 8000000, 7500000, 9000000, 8500000, 9500000, 10000000, 11000000, 12000000], // Data dummy
+      data: [
+        5000000, 6000000, 5500000, 7000000, 8000000, 7500000, 9000000, 8500000,
+        9500000, 10000000, 11000000, 12000000,
+      ], // Data dummy
       backgroundColor: "rgba(75, 192, 192, 0.2)",
       borderColor: "rgba(75, 192, 192, 1)",
       borderWidth: 1,

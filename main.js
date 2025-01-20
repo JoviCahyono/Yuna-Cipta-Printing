@@ -265,8 +265,8 @@ ipcMain.on("updateEmployee", (event, employee) => {
 });
 
 // import
-const XLSX = require('xlsx');
-const path = require('path');
+const XLSX = require("xlsx");
+const path = require("path");
 
 // Fungsi untuk mengimpor data dari file Excel ke database
 function importDataFromExcel(filePath) {
@@ -279,9 +279,20 @@ function importDataFromExcel(filePath) {
   const data = XLSX.utils.sheet_to_json(sheet);
 
   // Memasukkan data ke dalam database
-  data.forEach(row => {
-    const { tanggal, nama, hariKerja, gajiPerHari, lembur, jamLembur, upahLembur, kasbon, kasbonMotor, gaji } = row;
-    
+  data.forEach((row) => {
+    const {
+      tanggal,
+      nama,
+      hariKerja,
+      gajiPerHari,
+      lembur,
+      jamLembur,
+      upahLembur,
+      kasbon,
+      kasbonMotor,
+      gaji,
+    } = row;
+
     // Menyiapkan query untuk memasukkan data
     const sql = `
       INSERT INTO penggajian (
@@ -291,13 +302,28 @@ function importDataFromExcel(filePath) {
     `;
 
     // Eksekusi query untuk setiap baris data
-    db.run(sql, [tanggal, nama, hariKerja, gajiPerHari, lembur, jamLembur, upahLembur, kasbon, kasbonMotor, gaji], function(err) {
-      if (err) {
-        console.error('Error inserting data: ', err.message);
-      } else {
-        console.log(`Data inserted for ${nama}`);
+    db.run(
+      sql,
+      [
+        tanggal,
+        nama,
+        hariKerja,
+        gajiPerHari,
+        lembur,
+        jamLembur,
+        upahLembur,
+        kasbon,
+        kasbonMotor,
+        gaji,
+      ],
+      function (err) {
+        if (err) {
+          console.error("Error inserting data: ", err.message);
+        } else {
+          console.log(`Data inserted for ${nama}`);
+        }
       }
-    });
+    );
   });
 }
 

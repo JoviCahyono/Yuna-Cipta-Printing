@@ -30,7 +30,9 @@
         </div>
         <ul>
           <li>
-            <a href="./dashboard.html"> <i class="fas fa-home"></i>Dashboard </a>
+            <a href="./dashboard.html">
+              <i class="fas fa-home"></i>Dashboard
+            </a>
           </li>
           <li>
             <a class="active" href="#">
@@ -158,26 +160,59 @@
           <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Edit Data Penggajian</h2>
-            <form id="editPenggajianForm">
+            <form id="editPenggajianForm" class="three-column-form">
               <input type="hidden" id="editPenggajianId" />
-              <label for="editTanggal">Tanggal</label>
-              <input type="date" id="editTanggal" required />
-              <label for="editNama">Nama Karyawan</label>
-              <input type="text" id="editNama" required />
-              <label for="editHariKerja">Hari Kerja</label>
-              <input type="number" id="editHariKerja" required />
-              <label for="editGajiPerHari">Gaji Per Hari</label>
-              <input type="number" id="editGajiPerHari" required />
-              <label for="editLembur">Lembur (Hari)</label>
-              <input type="number" id="editLembur" required />
-              <label for="editJamLembur">Jam Lembur</label>
-              <input type="number" id="editJamLembur" required />
-              <label for="editUpahLembur">Upah Lembur per Jam</label>
-              <input type="number" id="editUpahLembur" required />
-              <label for="editKasbon">Kasbon</label>
-              <input type="number" id="editKasbon" required />
-              <label for="editKasbonMotor">Kasbon Motor</label>
-              <input type="number" id="editKasbonMotor" required />
+              <div class="form-group">
+                <label for="editTanggal">Tanggal</label>
+                <input type="date" id="editTanggal" required />
+              </div>
+
+              <div class="form-group">
+                <label for="editNama">Nama Karyawan</label>
+                <input type="text" id="editNama" required />
+              </div>
+
+              <div class="form-group">
+                <label for="editHariKerja">Hari Kerja</label>
+                <input
+                  type="number"
+                  id="editHariKerja"
+                  min="0"
+                  max="7"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="editGajiPerHari">Gaji Per Hari</label>
+                <input type="number" id="editGajiPerHari" required />
+              </div>
+
+              <div class="form-group">
+                <label label for="editLembur">Lembur (Hari)</label>
+                <input type="number" id="editLembur" required />
+              </div>
+
+              <div class="form-group">
+                <label for="editJamLembur">Jam Lembur</label>
+                <input type="number" id="editJamLembur" required />
+              </div>
+
+              <div class="form-group">
+                <label for="editUpahLembur">Upah Lembur per Jam</label>
+                <input type="number" id="editUpahLembur" required />
+              </div>
+
+              <div class="form-group">
+                <label for="editKasbon">Kasbon</label>
+                <input type="number" id="editKasbon" required />
+              </div>
+
+              <div class="form-group">
+                <label for="editKasbonMotor">Kasbon Motor</label>
+                <input type="number" id="editKasbonMotor" required />
+              </div>
+
               <button type="submit">Simpan Perubahan</button>
             </form>
           </div>

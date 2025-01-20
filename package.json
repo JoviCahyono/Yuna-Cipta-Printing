@@ -4,7 +4,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . yuna-cipta-printing --platform=win32 --arch=x64 --out=dist/ --icon=icon.ico"
+    "build": "electron-packager . yuna-cipta-printing --platform=win32 --arch=x64 --out=dist/ --icon=icon.ico",
+    "dev": "nodemon --exec electron ."
   },
   "build": {
     "appId": "com.yuna-cipta-printing",
@@ -18,7 +19,8 @@
   "devDependencies": {
     "electron": "^33.3.1",
     "electron-builder": "^24.13.3",
-    "electron-packager": "^17.1.2"
+    "electron-packager": "^17.1.2",
+    "nodemon": "^3.1.9"
   },
   "dependencies": {
     "chart.js": "^4.4.7",
