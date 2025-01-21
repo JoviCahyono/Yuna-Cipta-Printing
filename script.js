@@ -156,6 +156,112 @@ jamLemburInput.addEventListener("input", function () {
   }
 });
 
+// Validasi input untuk Gaji Per Hari
+const gajiPerHariInput = document.getElementById("gajiPerHari");
+gajiPerHariInput.addEventListener("input", function () {
+  let value = parseInt(gajiPerHariInput.value);
+  if (value < 0) {
+    gajiPerHariInput.value = 0; // Jika nilai kurang dari 0, atur menjadi 0
+  }
+});
+
+// Validasi input untuk Upah Lembur Per Jam
+const upahLemburInput = document.getElementById("upahLembur");
+upahLemburInput.addEventListener("input", function () {
+  let value = parseInt(upahLemburInput.value);
+  if (value < 0) {
+    upahLemburInput.value = 0; // Jika nilai kurang dari 0, atur menjadi 0
+  }
+});
+
+// Validasi input untuk Hari Kerja (0 - 7)
+const editHariKerjaInput = document.getElementById("editHariKerja");
+editHariKerjaInput.addEventListener("input", function () {
+  let value = parseInt(editHariKerjaInput.value);
+  if (value < 0) {
+    editHariKerjaInput.value = 0; // Jika nilai kurang dari 0, atur menjadi 0
+  } else if (value > 7) {
+    editHariKerjaInput.value = 7; // Jika nilai lebih dari 7, atur menjadi 7
+  }
+});
+
+// Validasi input untuk Lembur Mingguan (0 - 7)
+const editLemburInput = document.getElementById("editLembur");
+editLemburInput.addEventListener("input", function () {
+  let value = parseInt(editLemburInput.value);
+  if (value < 0) {
+    editLemburInput.value = 0; // Jika nilai kurang dari 0, atur menjadi 0
+  } else if (value > 7) {
+    editLemburInput.value = 7; // Jika nilai lebih dari 7, atur menjadi 7
+  }
+});
+
+// Validasi input untuk Jam Lembur (0 - 24)
+const editJamLemburInput = document.getElementById("editJamLembur");
+editJamLemburInput.addEventListener("input", function () {
+  let value = parseInt(editJamLemburInput.value);
+  if (value < 0) {
+    editJamLemburInput.value = 0; // Jika nilai kurang dari 0, atur menjadi 0
+  } else if (value > 24) {
+    editJamLemburInput.value = 24; // Jika nilai lebih dari 24, atur menjadi 24
+  }
+});
+
+// Validasi input untuk Gaji Per Hari
+const editGajiPerHariInput = document.getElementById("editGajiPerHari");
+editGajiPerHariInput.addEventListener("input", function () {
+  let value = parseInt(editGajiPerHariInput.value);
+  if (value < 0) {
+    editGajiPerHariInput.value = 0; // Jika nilai kurang dari 0, atur menjadi 0
+  }
+});
+
+// Validasi input untuk Upah Lembur Per Jam
+const editUpahLemburInput = document.getElementById("editUpahLembur");
+editUpahLemburInput.addEventListener("input", function () {
+  let value = parseInt(editUpahLemburInput.value);
+  if (value < 0) {
+    editUpahLemburInput.value = 0; // Jika nilai kurang dari 0, atur menjadi 0
+  }
+});
+
+// Validasi nama karyawan (hanya huruf)
+const namaInput = document.getElementById("nama");
+const editNamaInput = document.getElementById("editNama");
+
+function validasiNama(input) {
+  const regex = /^[A-Za-z\s]+$/; // Hanya menerima huruf dan spasi
+  if (!regex.test(input.value)) {
+    input.setCustomValidity("Nama hanya boleh mengandung huruf dan spasi.");
+  } else {
+    input.setCustomValidity(""); // Menghapus pesan kesalahan jika input valid
+  }
+}
+
+// Validasi nama saat input diubah
+namaInput.addEventListener("input", function () {
+  validasiNama(namaInput);
+});
+
+editNamaInput.addEventListener("input", function () {
+  validasiNama(editNamaInput);
+});
+
+// Cegah pengiriman form jika ada kesalahan
+document.getElementById("employeeForm").addEventListener("submit", function (event) {
+  validasiNama(namaInput);
+  if (!namaInput.checkValidity()) {
+    event.preventDefault(); // Cegah form disubmit jika nama tidak valid
+  }
+});
+
+document.getElementById("editEmployeeForm").addEventListener("submit", function (event) {
+  validasiNama(editNamaInput);
+  if (!editNamaInput.checkValidity()) {
+    event.preventDefault(); // Cegah form disubmit jika nama tidak valid
+  }
+});
+
 function logout() {
   // Kirim pesan ke main process untuk melakukan logout
   window.location.href = "login.html";
@@ -189,13 +295,7 @@ function convertToCSV(objArray, type) {
           "kasbon_motor",
           "gaji",
         ]
-      : [
-          "nama",
-          "gaji_harian",
-          "upah_lembur",
-          "kasbon",
-          "medical",
-        ];
+      : ["nama", "gaji_harian", "upah_lembur", "kasbon", "medical"];
 
   result += headers.join(",") + "\r\n";
 
@@ -205,7 +305,7 @@ function convertToCSV(objArray, type) {
       headers
         .map((header) => {
           const key = header.replace("id_", ""); // Mengambil key yang sesuai
-          return `"${item[key] !== undefined ? item[key] : ''}"`; // Membungkus nilai dengan tanda kutip
+          return `"${item[key] !== undefined ? item[key] : ""}"`; // Membungkus nilai dengan tanda kutip
         })
         .join(",") + "\r\n";
   });

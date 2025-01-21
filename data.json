@@ -116,6 +116,19 @@
       "kasbon": 1,
       "kasbon_motor": 1,
       "gaji": 2
+    },
+    {
+      "id": 29,
+      "tanggal_gajian": "2025-01-21",
+      "nama_karyawan": "02131",
+      "hari_kerja": 1,
+      "gaji_per_hari": 1,
+      "lembur_mingguan": "1",
+      "jam_lembur": 1,
+      "upah_lembur_per_jam": 1,
+      "kasbon": 1,
+      "kasbon_motor": 1,
+      "gaji": 2
     }
   ],
   "karyawan": [

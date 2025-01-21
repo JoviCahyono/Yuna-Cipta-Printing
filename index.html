@@ -156,61 +156,102 @@
         </div>
 
         <!-- Modal Edit Penggajian -->
+        <!-- Modal Edit Penggajian -->
         <div id="editPenggajianModal" class="modal">
           <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Edit Data Penggajian</h2>
             <form id="editPenggajianForm" class="three-column-form">
               <input type="hidden" id="editPenggajianId" />
+
               <div class="form-group">
-                <label for="editTanggal">Tanggal</label>
-                <input type="date" id="editTanggal" required />
+                <label for="editTanggal">Tanggal Gajian:</label>
+                <input type="date" id="editTanggal" name="tanggal" required />
               </div>
 
               <div class="form-group">
-                <label for="editNama">Nama Karyawan</label>
-                <input type="text" id="editNama" required />
+                <label for="editNama">Nama Karyawan:</label>
+                <input type="text" id="editNama" name="nama" required />
               </div>
 
               <div class="form-group">
-                <label for="editHariKerja">Hari Kerja</label>
+                <label for="editHariKerja">Hari Kerja:</label>
                 <input
                   type="number"
                   id="editHariKerja"
+                  name="hariKerja"
+                  required
                   min="0"
                   max="7"
+                />
+                <small id="editHariKerjaInfo" class="input-info"
+                  >Masukkan jumlah hari kerja antara 0 dan 7.</small
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="editGajiPerHari">Gaji Per Hari:</label>
+                <input
+                  type="number"
+                  id="editGajiPerHari"
+                  name="gajiPerHari"
                   required
                 />
               </div>
 
               <div class="form-group">
-                <label for="editGajiPerHari">Gaji Per Hari</label>
-                <input type="number" id="editGajiPerHari" required />
+                <label for="editLembur">Lembur (Hari):</label>
+                <input
+                  type="number"
+                  id="editLembur"
+                  name="lembur"
+                  required
+                  min="0"
+                  max="7"
+                />
+                <small id="editLemburInfo" class="input-info"
+                  >Masukkan jumlah lembur mingguan antara 0 dan 7.</small
+                >
               </div>
 
               <div class="form-group">
-                <label for="editLembur">Lembur (Hari)</label>
-                <input type="number" id="editLembur" required />
+                <label for="editJamLembur">Jam Lembur:</label>
+                <input
+                  type="number"
+                  id="editJamLembur"
+                  name="jamLembur"
+                  required
+                  min="0"
+                  max="24"
+                />
+                <small id="editJamLemburInfo" class="input-info"
+                  >Masukkan jumlah jam lembur antara 0 dan 24.</small
+                >
               </div>
 
               <div class="form-group">
-                <label for="editJamLembur">Jam Lembur</label>
-                <input type="number" id="editJamLembur" required />
+                <label for="editUpahLembur">Upah Lembur per Jam:</label>
+                <input
+                  type="number"
+                  id="editUpahLembur"
+                  name="upahLembur"
+                  required
+                />
               </div>
 
               <div class="form-group">
-                <label for="editUpahLembur">Upah Lembur per Jam</label>
-                <input type="number" id="editUpahLembur" required />
+                <label for="editKasbon">Kasbon:</label>
+                <input type="number" id="editKasbon" name="kasbon" required />
               </div>
 
               <div class="form-group">
-                <label for="editKasbon">Kasbon</label>
-                <input type="number" id="editKasbon" required />
-              </div>
-
-              <div class="form-group">
-                <label for="editKasbonMotor">Kasbon Motor</label>
-                <input type="number" id="editKasbonMotor" required />
+                <label for="editKasbonMotor">Kasbon Motor:</label>
+                <input
+                  type="number"
+                  id="editKasbonMotor"
+                  name="kasbonMotor"
+                  required
+                />
               </div>
 
               <button type="submit">Simpan Perubahan</button>
