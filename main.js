@@ -86,8 +86,6 @@ app.on("before-quit", () => {
   });
 });
 
-
-
 // Inisialisasi database: buat tabel jika belum ada
 db.serialize(() => {
   // Tabel penggajian
@@ -139,35 +137,6 @@ db.serialize(() => {
 });
 
 // ====================== DASHBOARD ======================
-// Fungsi untuk mendapatkan jumlah karyawan
-ipcMain.handle("get-jumlah-karyawan", () => {
-  return new Promise((resolve, reject) => {
-    db.get("SELECT COUNT(*) AS jumlah FROM karyawan", (err, row) => {
-      if (err) reject(err);
-      else resolve(row.jumlah);
-    });
-  });
-});
-
-// Fungsi untuk mendapatkan total gaji
-ipcMain.handle("get-total-gaji", () => {
-  return new Promise((resolve, reject) => {
-    db.get("SELECT SUM(gaji_harian) AS total FROM karyawan", (err, row) => {
-      if (err) reject(err);
-      else resolve(row.total);
-    });
-  });
-});
-
-// Fungsi untuk mendapatkan total kasbon
-ipcMain.handle("get-total-kasbon", () => {
-  return new Promise((resolve, reject) => {
-    db.get("SELECT SUM(kasbon) AS total FROM karyawan", (err, row) => {
-      if (err) reject(err);
-      else resolve(row.total);
-    });
-  });
-});
 
 // ====================== HANDLER PENGGAJIAN ======================
 

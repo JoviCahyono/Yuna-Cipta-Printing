@@ -268,7 +268,6 @@ if (openModal && modal && closeModal) {
   });
 }
 
-
 // ====================== HANDLER KARYAWAN ======================
 
 // Cek apakah halaman ini adalah karyawan.html dengan memeriksa keberadaan elemen form
@@ -466,7 +465,6 @@ if (employeeForm && employeeTableBody) {
   });
 }
 
-
 employeeTableBody.addEventListener("click", (e) => {
   if (e.target && e.target.classList.contains("edit-btn")) {
     const row = e.target.closest("tr");
@@ -474,8 +472,12 @@ employeeTableBody.addEventListener("click", (e) => {
 
     // Memuat data karyawan ke form edit
     const nama = row.children[0].innerText;
-    const gajiHarian = parseFloat(row.children[1].innerText.replace(/Rp|,/g, ""));
-    const upahLembur = parseFloat(row.children[2].innerText.replace(/Rp|,/g, ""));
+    const gajiHarian = parseFloat(
+      row.children[1].innerText.replace(/Rp|,/g, "")
+    );
+    const upahLembur = parseFloat(
+      row.children[2].innerText.replace(/Rp|,/g, "")
+    );
     const kasbon = parseFloat(row.children[3].innerText.replace(/Rp|,/g, ""));
     const medical = parseFloat(row.children[4].innerText.replace(/Rp|,/g, ""));
 
@@ -490,39 +492,49 @@ employeeTableBody.addEventListener("click", (e) => {
     document.getElementById("editMedical").value = medical;
 
     // Menangani pengiriman form edit
-    document.getElementById("editEmployeeForm").addEventListener("submit", (e) => {
-      e.preventDefault();
+    document
+      .getElementById("editEmployeeForm")
+      .addEventListener("submit", (e) => {
+        e.preventDefault();
 
-      const namaBaru = document.getElementById("editNama").value.trim();
-      const gajiHarianBaru = parseFloat(document.getElementById("editGajiHarian").value);
-      const upahLemburBaru = parseFloat(document.getElementById("editUpahLembur").value);
-      const kasbonBaru = parseFloat(document.getElementById("editKasbon").value);
-      const medicalBaru = parseFloat(document.getElementById("editMedical").value);
+        const namaBaru = document.getElementById("editNama").value.trim();
+        const gajiHarianBaru = parseFloat(
+          document.getElementById("editGajiHarian").value
+        );
+        const upahLemburBaru = parseFloat(
+          document.getElementById("editUpahLembur").value
+        );
+        const kasbonBaru = parseFloat(
+          document.getElementById("editKasbon").value
+        );
+        const medicalBaru = parseFloat(
+          document.getElementById("editMedical").value
+        );
 
-      if (
-        !namaBaru ||
-        isNaN(gajiHarianBaru) ||
-        isNaN(upahLemburBaru) ||
-        isNaN(kasbonBaru) ||
-        isNaN(medicalBaru)
-      ) {
-        alert("Semua field harus diisi dengan angka yang valid.");
-        return;
-      }
+        if (
+          !namaBaru ||
+          isNaN(gajiHarianBaru) ||
+          isNaN(upahLemburBaru) ||
+          isNaN(kasbonBaru) ||
+          isNaN(medicalBaru)
+        ) {
+          alert("Semua field harus diisi dengan angka yang valid.");
+          return;
+        }
 
-      // Kirim data yang diperbarui ke main process
-      ipcRenderer.send("updateEmployee", {
-        id: employeeId,
-        nama: namaBaru,
-        gajiHarian: gajiHarianBaru,
-        upahLembur: upahLemburBaru,
-        kasbon: kasbonBaru,
-        medical: medicalBaru,
+        // Kirim data yang diperbarui ke main process
+        ipcRenderer.send("updateEmployee", {
+          id: employeeId,
+          nama: namaBaru,
+          gajiHarian: gajiHarianBaru,
+          upahLembur: upahLemburBaru,
+          kasbon: kasbonBaru,
+          medical: medicalBaru,
+        });
+
+        // Sembunyikan modal setelah edit
+        document.getElementById("editEmployeeModal").style.display = "none";
       });
-
-      // Sembunyikan modal setelah edit
-      document.getElementById("editEmployeeModal").style.display = "none";
-    });
   }
 });
 
@@ -543,36 +555,3 @@ if (modalEditKaryawan && closeModalEditKaryawan) {
 }
 
 // =================== DASHBOARD ======================
-// Fungsi untuk mengambil jumlah karyawan
-function getJumlahKaryawan() {
-  ipcRenderer.invoke('get-jumlah-karyawan').then((jumlahKaryawan) => {
-    $('#jumlahKaryawan').text(jumlahKaryawan);  // Menggunakan jQuery untuk memperbarui elemen dengan id jumlahKaryawan
-  }).catch((err) => {
-    console.error("Error saat mengambil jumlah karyawan:", err);
-  });
-}
-
-// Fungsi untuk mengambil total gaji
-function getTotalGaji() {
-  ipcRenderer.invoke('get-total-gaji').then((totalGaji) => {
-    $('#totalGaji').text(totalGaji);  // Menggunakan jQuery untuk memperbarui elemen dengan id totalGaji
-  }).catch((err) => {
-    console.error("Error saat mengambil total gaji:", err);
-  });
-}
-
-// Fungsi untuk mengambil total kasbon
-function getTotalKasbon() {
-  ipcRenderer.invoke('get-total-kasbon').then((totalKasbon) => {
-    $('#totalKasbon').text(totalKasbon);  // Menggunakan jQuery untuk memperbarui elemen dengan id totalKasbon
-  }).catch((err) => {
-    console.error("Error saat mengambil total kasbon:", err);
-  });
-}
-
-// Panggil fungsi saat halaman dimuat
-$(document).ready(function () {
-  getJumlahKaryawan();
-  getTotalGaji();
-  getTotalKasbon();
-});
