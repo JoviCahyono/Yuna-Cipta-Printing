@@ -90,21 +90,27 @@
             <!-- Tombol Close -->
             <span class="close">&times;</span>
             <h2>Edit Karyawan</h2>
-            <form id="editEmployeeForm">
-              <label for="editNama">Nama:</label>
-              <input type="text" id="editNama" required />
-
-              <label for="editGajiHarian">Gaji Harian:</label>
-              <input type="number" id="editGajiHarian" required />
-
-              <label for="editUpahLembur">Upah Lembur:</label>
-              <input type="number" id="editUpahLembur" required />
-
-              <label for="editKasbon">Kasbon:</label>
-              <input type="number" id="editKasbon" required />
-
-              <label for="editMedical">Medical:</label>
-              <input type="number" id="editMedical" required />
+            <form id="editEmployeeForm" class="three-column-form">
+              <div class="form-group">
+                <label for="editNama">Nama:</label>
+                <input type="text" id="editNama" required />
+              </div>
+              <div class="form-group">
+                <label for="editGajiHarian">Gaji Harian:</label>
+                <input type="number" id="editGajiHarian" required />
+              </div>
+              <div class="form-group">
+                <label for="editUpahLembur">Upah Lembur:</label>
+                <input type="number" id="editUpahLembur" required />
+              </div>
+              <div class="form-group">
+                <label for="editKasbon">Kasbon:</label>
+                <input type="number" id="editKasbon" required />
+              </div>
+              <div class="form-group">
+                <label for="editMedical">Medical:</label>
+                <input type="number" id="editMedical" required />
+              </div>
 
               <button type="submit">Simpan Perubahan</button>
             </form>
