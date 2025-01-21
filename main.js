@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
+const fs = require("fs");
 
 // Buat atau sambungkan ke database
 const db = new sqlite3.Database("./penggajian.db", (err) => {
@@ -85,6 +86,61 @@ app.on("before-quit", () => {
     }
   });
 });
+
+// Fungsi untuk mengambil data dari kedua tabel dan mengonversinya ke format JSON
+const updateDataJson = () => {
+  return new Promise((resolve, reject) => {
+    // Mengambil data dari tabel penggajian
+    db.all("SELECT * FROM penggajian", (err, penggajianData) => {
+      if (err) {
+        return reject(err);
+      }
+
+      // Mengambil data dari tabel karyawan
+      db.all("SELECT * FROM karyawan", (err, karyawanData) => {
+        if (err) {
+          return reject(err);
+        }
+
+        // Gabungkan data ke dalam satu objek JSON
+        const data = {
+          penggajian: penggajianData,
+          karyawan: karyawanData,
+        };
+
+        // Simpan data ke file JSON untuk update
+        fs.writeFile("./data.json", JSON.stringify(data, null, 2), (err) => {
+          if (err) {
+            return reject(err);
+          }
+          console.log("Data JSON berhasil diperbarui.");
+        });
+
+        resolve(data); // Kembalikan data dalam format JSON
+      });
+    });
+  });
+};
+
+
+// Menangani event untuk mengambil data JSON
+ipcMain.handle("get-data-json", async () => {
+  try {
+    const data = JSON.parse(fs.readFileSync("./data.json", "utf-8"));
+    return data; // Mengembalikan data JSON ke frontend
+  } catch (error) {
+    console.error("Gagal membaca file JSON:", error);
+    return {};
+  }
+});
+
+// Update data JSON setiap 1 menit
+setInterval(() => {
+  updateDataJson(); // Panggil fungsi untuk memperbarui data
+}, 1 * 60 * 1000);  // 1 menit
+
+
+
 
 // Inisialisasi database: buat tabel jika belum ada
 db.serialize(() => {

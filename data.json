@@ -1,0 +1,179 @@
+{
+  "penggajian": [
+    {
+      "id": 10,
+      "tanggal_gajian": "2024-12-28",
+      "nama_karyawan": "Jonathan",
+      "hari_kerja": 6,
+      "gaji_per_hari": 50000,
+      "lembur_mingguan": "1",
+      "jam_lembur": 11,
+      "upah_lembur_per_jam": 8000,
+      "kasbon": 0,
+      "kasbon_motor": 0,
+      "gaji": 388000
+    },
+    {
+      "id": 14,
+      "tanggal_gajian": "2024-12-28",
+      "nama_karyawan": "Jovi",
+      "hari_kerja": 6,
+      "gaji_per_hari": 80000,
+      "lembur_mingguan": "1",
+      "jam_lembur": 12,
+      "upah_lembur_per_jam": 8000,
+      "kasbon": 0,
+      "kasbon_motor": 0,
+      "gaji": 576000
+    },
+    {
+      "id": 19,
+      "tanggal_gajian": "2025-01-14",
+      "nama_karyawan": "Ayu",
+      "hari_kerja": 6,
+      "gaji_per_hari": 80000,
+      "lembur_mingguan": "1",
+      "jam_lembur": 12,
+      "upah_lembur_per_jam": 8000,
+      "kasbon": 0,
+      "kasbon_motor": 0,
+      "gaji": 576000
+    },
+    {
+      "id": 21,
+      "tanggal_gajian": "2025-01-14",
+      "nama_karyawan": "Agus",
+      "hari_kerja": 6,
+      "gaji_per_hari": 125000,
+      "lembur_mingguan": "1",
+      "jam_lembur": 12,
+      "upah_lembur_per_jam": 8000,
+      "kasbon": 0,
+      "kasbon_motor": 0,
+      "gaji": 846000
+    },
+    {
+      "id": 24,
+      "tanggal_gajian": "2025-01-21",
+      "nama_karyawan": "ananda",
+      "hari_kerja": 6,
+      "gaji_per_hari": 80000,
+      "lembur_mingguan": "1",
+      "jam_lembur": 12,
+      "upah_lembur_per_jam": 8000,
+      "kasbon": 0,
+      "kasbon_motor": 0,
+      "gaji": 576000
+    },
+    {
+      "id": 25,
+      "tanggal_gajian": "2025-01-21",
+      "nama_karyawan": "dada",
+      "hari_kerja": 1,
+      "gaji_per_hari": 1,
+      "lembur_mingguan": "1",
+      "jam_lembur": 1,
+      "upah_lembur_per_jam": 1,
+      "kasbon": 1,
+      "kasbon_motor": 1,
+      "gaji": 2
+    },
+    {
+      "id": 26,
+      "tanggal_gajian": "2025-01-21",
+      "nama_karyawan": "Juan",
+      "hari_kerja": 6,
+      "gaji_per_hari": 80000,
+      "lembur_mingguan": "0",
+      "jam_lembur": 0,
+      "upah_lembur_per_jam": 8000,
+      "kasbon": 0,
+      "kasbon_motor": 0,
+      "gaji": 480000
+    },
+    {
+      "id": 27,
+      "tanggal_gajian": "2025-01-21",
+      "nama_karyawan": "Andika",
+      "hari_kerja": 1,
+      "gaji_per_hari": 80000,
+      "lembur_mingguan": "0",
+      "jam_lembur": 0,
+      "upah_lembur_per_jam": 8000,
+      "kasbon": 0,
+      "kasbon_motor": 0,
+      "gaji": 80000
+    },
+    {
+      "id": 28,
+      "tanggal_gajian": "2025-01-21",
+      "nama_karyawan": "alip",
+      "hari_kerja": 1,
+      "gaji_per_hari": 1,
+      "lembur_mingguan": "1",
+      "jam_lembur": 1,
+      "upah_lembur_per_jam": 1,
+      "kasbon": 1,
+      "kasbon_motor": 1,
+      "gaji": 2
+    }
+  ],
+  "karyawan": [
+    {
+      "id": 5,
+      "nama": "Jovi",
+      "gaji_harian": 82410,
+      "upah_lembur": 15000,
+      "kasbon": 1000000,
+      "medical": 100000
+    },
+    {
+      "id": 7,
+      "nama": "Ayu",
+      "gaji_harian": 85000,
+      "upah_lembur": 8000,
+      "kasbon": 200000,
+      "medical": 150000
+    },
+    {
+      "id": 8,
+      "nama": "Fathan",
+      "gaji_harian": 1,
+      "upah_lembur": 1,
+      "kasbon": 1,
+      "medical": 1
+    },
+    {
+      "id": 10,
+      "nama": "Gambi",
+      "gaji_harian": 1,
+      "upah_lembur": 1,
+      "kasbon": 1,
+      "medical": 1
+    },
+    {
+      "id": 12,
+      "nama": "Albert",
+      "gaji_harian": 891420,
+      "upah_lembur": 10000,
+      "kasbon": 122222,
+      "medical": 12421
+    },
+    {
+      "id": 13,
+      "nama": "Andika",
+      "gaji_harian": 100000,
+      "upah_lembur": 10000,
+      "kasbon": 1000000,
+      "medical": 1000000
+    },
+    {
+      "id": 14,
+      "nama": "alip",
+      "gaji_harian": 1,
+      "upah_lembur": 1,
+      "kasbon": 1,
+      "medical": 1
+    }
+  ]
+}
