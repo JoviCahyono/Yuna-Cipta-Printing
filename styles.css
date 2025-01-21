@@ -1,5 +1,5 @@
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Urbanist", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
@@ -10,12 +10,13 @@ body {
 }
 .sidebar {
   width: 250px;
-  background-color: #f0f0f5;
+  background-color: #F4F4FB;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  border-right: 0.5px solid var(--primary-100, #D6D5E8);
 }
 
 .login-container {
@@ -37,7 +38,7 @@ body {
 
 .login-box h2 {
   font-size: 24px;
-  color: #4a4a8a;
+  color: #312F8D;
   margin-bottom: 20px;
 }
 
@@ -57,7 +58,7 @@ body {
 
 .company-name h2 {
   font-size: 18px;
-  color: #4a4a8a;
+  color: #312F8D;
   margin: 0;
   line-height: 1.2;
 }
@@ -82,15 +83,16 @@ ul li {
 
 ul li a {
   text-decoration: none;
-  color: #4a4a8a;
+  color: #312F8D;
   font-size: 16px;
   display: flex;
   align-items: center; /* Sejajarkan secara vertikal */
   justify-content: flex-start; /* Sejajarkan secara horizontal */
-  padding: 10px;
+  padding: var(--16, 16px);
   border-radius: 5px;
   width: 100%;
   transition: background-color 0.3s ease; /* Tambahkan transisi untuk perubahan warna */
+  gap: 8px;
 }
 
 ul li a i {
@@ -98,16 +100,17 @@ ul li a i {
 }
 
 ul li a.active {
-  background-color: #4a4a8a;
+  background-color: #312F8D;
   color: #fff;
-  padding-left: 10px; /* Memberikan padding tambahan untuk elemen aktif agar tidak bergeser */
+  padding: var(--16, 16px); /* Memberikan padding tambahan untuk elemen aktif agar tidak bergeser */
   width: 100%;
+  gap: 8px;
 }
 
 .content {
   flex: 1;
   padding: 20px;
-  background-color: #fff;
+  background-color: #F4F4FB;
   overflow-y: auto; /* Menambahkan kemampuan scroll vertikal */
   height: calc(100vh - 40px); /* Menyesuaikan tinggi dengan sidebar dan header */
 }
@@ -154,7 +157,7 @@ ul li a.active {
 }
 .header h1 {
   font-size: 24px;
-  color: #4a4a8a;
+  color: #312F8D;
 }
 .header .user-info {
   display: flex;
@@ -167,7 +170,7 @@ ul li a.active {
 }
 .header .user-info span {
   font-size: 16px;
-  color: #4a4a8a;
+  color: #312F8D;
 }
 .header .user-info span.role {
   font-size: 14px;
@@ -188,7 +191,7 @@ ul li a.active {
 }
 
 .search-filter button {
-  background-color: #4a4a8a;
+  background-color: #312F8D;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -202,7 +205,7 @@ ul li a.active {
   margin-bottom: 20px;
 }
 .actions button {
-  background-color: #4a4a8a;
+  background-color: #312F8D;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -222,10 +225,10 @@ table td {
 }
 table th {
   background-color: #f0f0f5;
-  color: #4a4a8a;
+  color: #312F8D;
 }
 table td {
-  color: #4a4a8a;
+  color: #312F8D;
 }
 .pagination {
   text-align: right;
@@ -273,7 +276,7 @@ table td {
 
 .form-group label {
   font-size: 14px;
-  color: #4a4a8a;
+  color: #312F8D;
 }
 
 .form-group input {
@@ -285,7 +288,7 @@ table td {
 
 button {
   grid-column: span 3;
-  background-color: #4a4a8a;
+  background-color: #312F8D;
   color: white;
   padding: 10px;
   border: none;
@@ -294,7 +297,7 @@ button {
 }
 
 button:hover {
-  background-color: #3a3a7a;
+  background-color: #272671;
 }
 
 /* Styling untuk dropdown Ascending / Descending */
@@ -329,12 +332,13 @@ input:hover + .input-info {
 }
 
 .card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 30%;
-  text-align: center;
+  display: flex;
+  padding: var(--Number-4, 16px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--4, 4px);
+  border-radius: var(--Number-2, 8px);
+  background: var(--neutral-50, #FAFAFA);
 }
 
 .card h2 {
@@ -371,7 +375,7 @@ input:hover + .input-info {
 
 .dashboard h1 {
   font-size: 24px;
-  color: #4a4a8a;
+  color: #312F8D;
   margin-bottom: 20px;
 }
 
@@ -384,11 +388,11 @@ input:hover + .input-info {
 
 .summary .card {
   background: #fff;
-  padding: 20px;
+  padding: 12px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 30%;
-  text-align: center;
+  text-align: left;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -406,7 +410,7 @@ input:hover + .input-info {
 .summary .card p {
   font-size: 24px;
   font-weight: bold;
-  color: #4a4a8a;
+  color: #312F8D;
   margin: 10px 0 0;
 }
 
@@ -421,7 +425,7 @@ input:hover + .input-info {
 
 .charts h2 {
   font-size: 20px;
-  color: #4a4a8a;
+  color: #312F8D;
   margin-bottom: 20px;
 }
 
@@ -446,8 +450,8 @@ table td {
 }
 
 table th {
-  background-color: #f0f0f5;
-  color: #4a4a8a;
+  background-color: #ADACD1;
+  color: #171717;
   font-weight: 500;
 }
 
@@ -467,7 +471,7 @@ table tr:hover {
 }
 
 .actions button {
-  background-color: #4a4a8a;
+  background-color: #312F8D;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -478,7 +482,7 @@ table tr:hover {
 }
 
 .actions button:hover {
-  background-color: #3a3a7a;
+  background-color: #272671;
 }
 
 /* Pagination */
@@ -517,7 +521,7 @@ table tr:hover {
 
 .modal-content h2 {
   font-size: 20px;
-  color: #4a4a8a;
+  color: #312F8D;
   margin-bottom: 20px;
 }
 
@@ -531,7 +535,7 @@ table tr:hover {
 
 .modal-content .close:hover,
 .modal-content .close:focus {
-  color: #4a4a8a;
+  color: #312F8D;
 }
 
 /* Form Tiga Kolom */
@@ -548,7 +552,7 @@ table tr:hover {
 
 .three-column-form .form-group label {
   font-size: 14px;
-  color: #4a4a8a;
+  color: #312F8D;
   margin-bottom: 5px;
 }
 
@@ -561,7 +565,7 @@ table tr:hover {
 
 .three-column-form button {
   grid-column: span 3;
-  background-color: #4a4a8a;
+  background-color: #312F8D;
   color: #fff;
   padding: 10px;
   border: none;
