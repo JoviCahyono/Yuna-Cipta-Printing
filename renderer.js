@@ -542,54 +542,37 @@ if (modalEditKaryawan && closeModalEditKaryawan) {
   });
 }
 
-
 // =================== DASHBOARD ======================
-const ctx = document.getElementById("gajiChart").getContext("2d");
+// Fungsi untuk mengambil jumlah karyawan
+function getJumlahKaryawan() {
+  ipcRenderer.invoke('get-jumlah-karyawan').then((jumlahKaryawan) => {
+    $('#jumlahKaryawan').text(jumlahKaryawan);  // Menggunakan jQuery untuk memperbarui elemen dengan id jumlahKaryawan
+  }).catch((err) => {
+    console.error("Error saat mengambil jumlah karyawan:", err);
+  });
+}
 
-// Data dummy untuk grafik (contoh)
-const chartData = {
-  labels: [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "Mei",
-    "Jun",
-    "Jul",
-    "Agu",
-    "Sep",
-    "Okt",
-    "Nov",
-    "Des",
-  ],
-  datasets: [
-    {
-      label: "Total Gaji per Bulan",
-      data: [
-        5000000, 6000000, 5500000, 7000000, 8000000, 7500000, 9000000, 8500000,
-        9500000, 10000000, 11000000, 12000000,
-      ], // Data dummy
-      backgroundColor: "rgba(75, 192, 192, 0.2)",
-      borderColor: "rgba(75, 192, 192, 1)",
-      borderWidth: 1,
-    },
-  ],
-};
+// Fungsi untuk mengambil total gaji
+function getTotalGaji() {
+  ipcRenderer.invoke('get-total-gaji').then((totalGaji) => {
+    $('#totalGaji').text(totalGaji);  // Menggunakan jQuery untuk memperbarui elemen dengan id totalGaji
+  }).catch((err) => {
+    console.error("Error saat mengambil total gaji:", err);
+  });
+}
 
-// Konfigurasi grafik
-const chartConfig = {
-  type: "bar", // Jenis grafik (bisa diganti ke 'line', 'pie', dll.)
-  data: chartData,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  },
-};
+// Fungsi untuk mengambil total kasbon
+function getTotalKasbon() {
+  ipcRenderer.invoke('get-total-kasbon').then((totalKasbon) => {
+    $('#totalKasbon').text(totalKasbon);  // Menggunakan jQuery untuk memperbarui elemen dengan id totalKasbon
+  }).catch((err) => {
+    console.error("Error saat mengambil total kasbon:", err);
+  });
+}
 
-// Buat grafik
-const gajiChart = new Chart(ctx, chartConfig);
-
-//============================================= kasbon =============================
+// Panggil fungsi saat halaman dimuat
+$(document).ready(function () {
+  getJumlahKaryawan();
+  getTotalGaji();
+  getTotalKasbon();
+});

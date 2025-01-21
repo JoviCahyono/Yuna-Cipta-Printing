@@ -11,9 +11,9 @@ const db = new sqlite3.Database("./penggajian.db", (err) => {
   }
 });
 
-// Handler untuk membuat jendela
-function createWindow() {
-  const win = new BrowserWindow({
+// Handler untuk membuat jendela utama
+function createMainWindow() {
+  const mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,
     minWidth: 800,
@@ -25,32 +25,68 @@ function createWindow() {
     },
   });
 
-  win.setResizable(true);
+  mainWindow.setResizable(true);
 
-  const { width, height } = win.getBounds();
-  win.setSize(width * 0.8, height * 0.8);
+  const { width, height } = mainWindow.getBounds();
+  mainWindow.setSize(width * 0.8, height * 0.8);
 
-  // Muat halaman sesuai dengan yang diakses
-  // Misalnya, default ke index.html
-  win.loadFile("index.html");
+  // Muat halaman utama
+  mainWindow.loadFile("index.html");
 
-  win.maximize();
+  mainWindow.maximize();
 
   // Buka DevTools jika diperlukan
-  // win.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
+}
+
+let loginWindow; // Window login
+
+function createLoginWindow() {
+  loginWindow = new BrowserWindow({
+    width: 400,
+    height: 300,
+    webPreferences: {
+      preload: path.join(__dirname, "login.js"), // Pastikan menggunakan login.js untuk login.html
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+  loginWindow.loadFile("login.html");
 }
 
 app.whenReady().then(() => {
-  createWindow();
+  createLoginWindow(); // Membuka window login
+
+  ipcMain.on("login-success", () => {
+    if (loginWindow) {
+      loginWindow.close(); // Menutup window login hanya jika loginWindow ada
+      loginWindow = null; // Menandai bahwa loginWindow telah ditutup
+    }
+    createMainWindow(); // Membuka window utama setelah login sukses
+  });
 
   app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    if (BrowserWindow.getAllWindows().length === 0) createMainWindow(); // Memastikan jendela utama terbuka jika tidak ada jendela yang terbuka
   });
 });
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
+
+// Menutup database saat aplikasi keluar
+app.on("before-quit", () => {
+  db.close((err) => {
+    if (err) {
+      console.error("Error saat menutup database:", err.message);
+    } else {
+      console.log("Database ditutup dengan aman.");
+    }
+  });
+});
+
+
 
 // Inisialisasi database: buat tabel jika belum ada
 db.serialize(() => {
@@ -102,6 +138,36 @@ db.serialize(() => {
   );
 });
 
+// ====================== DASHBOARD ======================
+// Fungsi untuk mendapatkan jumlah karyawan
+ipcMain.handle("get-jumlah-karyawan", () => {
+  return new Promise((resolve, reject) => {
+    db.get("SELECT COUNT(*) AS jumlah FROM karyawan", (err, row) => {
+      if (err) reject(err);
+      else resolve(row.jumlah);
+    });
+  });
+});
+
+// Fungsi untuk mendapatkan total gaji
+ipcMain.handle("get-total-gaji", () => {
+  return new Promise((resolve, reject) => {
+    db.get("SELECT SUM(gaji_harian) AS total FROM karyawan", (err, row) => {
+      if (err) reject(err);
+      else resolve(row.total);
+    });
+  });
+});
+
+// Fungsi untuk mendapatkan total kasbon
+ipcMain.handle("get-total-kasbon", () => {
+  return new Promise((resolve, reject) => {
+    db.get("SELECT SUM(kasbon) AS total FROM karyawan", (err, row) => {
+      if (err) reject(err);
+      else resolve(row.total);
+    });
+  });
+});
 
 // ====================== HANDLER PENGGAJIAN ======================
 
@@ -185,7 +251,6 @@ ipcMain.on("hapusData", (event, rowId) => {
   });
 });
 
-
 // ====================== HANDLER KARYAWAN ======================
 
 // Handler untuk menambah karyawan
@@ -266,7 +331,5 @@ ipcMain.on("updateEmployee", (event, employee) => {
     }
   );
 });
-
-
 
 // ========================== kasbon =================================
