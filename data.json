@@ -129,6 +129,32 @@
       "kasbon": 1,
       "kasbon_motor": 1,
       "gaji": 2
+    },
+    {
+      "id": 30,
+      "tanggal_gajian": "2025-01-21",
+      "nama_karyawan": "Huda",
+      "hari_kerja": 6,
+      "gaji_per_hari": 80000,
+      "lembur_mingguan": "1",
+      "jam_lembur": 10,
+      "upah_lembur_per_jam": 8000,
+      "kasbon": 0,
+      "kasbon_motor": 0,
+      "gaji": 560000
+    },
+    {
+      "id": 31,
+      "tanggal_gajian": "2025-02-21",
+      "nama_karyawan": "Dean",
+      "hari_kerja": 5,
+      "gaji_per_hari": 10000,
+      "lembur_mingguan": "2",
+      "jam_lembur": 15,
+      "upah_lembur_per_jam": 8000,
+      "kasbon": 0,
+      "kasbon_motor": 0,
+      "gaji": 170000
     }
   ],
   "karyawan": [
@@ -187,6 +213,22 @@
       "upah_lembur": 1,
       "kasbon": 1,
       "medical": 1
+    },
+    {
+      "id": 16,
+      "nama": "Yudi",
+      "gaji_harian": 50000,
+      "upah_lembur": 5000,
+      "kasbon": 500000,
+      "medical": 500000
+    },
+    {
+      "id": 17,
+      "nama": "Willy",
+      "gaji_harian": 100000,
+      "upah_lembur": 8000,
+      "kasbon": 1000000,
+      "medical": 1000000
     }
   ]
 }

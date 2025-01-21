@@ -1,6 +1,6 @@
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer } = require("electron");
 
 // Menyediakan fungsi untuk renderer process
-contextBridge.exposeInMainWorld('electron', {
-  getData: () => ipcRenderer.invoke('get-data')
+contextBridge.exposeInMainWorld("electron", {
+  getData: () => ipcRenderer.invoke("get-data"),
 });

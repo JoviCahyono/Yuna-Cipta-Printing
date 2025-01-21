@@ -122,7 +122,6 @@ const updateDataJson = () => {
   });
 };
 
-
 // Menangani event untuk mengambil data JSON
 ipcMain.handle("get-data-json", async () => {
   try {
@@ -137,10 +136,7 @@ ipcMain.handle("get-data-json", async () => {
 // Update data JSON setiap 1 menit
 setInterval(() => {
   updateDataJson(); // Panggil fungsi untuk memperbarui data
-}, 1 * 60 * 1000);  // 1 menit
-
-
-
+}, 1 * 60 * 1000); // 1 menit
 
 // Inisialisasi database: buat tabel jika belum ada
 db.serialize(() => {

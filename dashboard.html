@@ -89,17 +89,114 @@
         </div>
 
         <!-- Grafik -->
-        <!-- <div class="charts">
+        <div class="charts">
           <div class="chart-container">
             <h2>Total Gaji Perbulan</h2>
             <canvas id="gajiChart"></canvas>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="renderer.js"></script>
+    <script>
+      // Parse the JSON data
+      // Fungsi untuk memformat angka dengan pemisah ribuan
+      function formatNumber(num) {
+        return new Intl.NumberFormat("id-ID").format(num);
+      }
+
+      // Memuat data dari file data.json
+      fetch("./data.json")
+        .then((response) => response.json())
+        .then((data) => {
+          // Hitung jumlah karyawan
+          const jumlahKaryawan = data.karyawan.length;
+          document.getElementById("jumlah-karyawan").textContent =
+            formatNumber(jumlahKaryawan);
+
+          // Hitung total gaji
+          const totalGaji = data.penggajian.reduce(
+            (total, item) => total + (item.gaji || 0),
+            0
+          );
+          document.getElementById("total-gaji").textContent =
+            "Rp " + formatNumber(totalGaji);
+
+          // Hitung total kasbon
+          const totalKasbon = data.karyawan.reduce(
+            (total, item) => total + (item.kasbon || 0),
+            0
+          );
+          document.getElementById("total-kasbon").textContent =
+            "Rp " + formatNumber(totalKasbon);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
+
+        
+      // Fungsi untuk memformat angka dengan pemisah ribuan
+      function formatNumber(num) {
+        return new Intl.NumberFormat("id-ID").format(num);
+      }
+
+      // Memuat data dari file data.json
+      fetch("./data.json")
+        .then((response) => response.json())
+        .then((data) => {
+          // Proses data penggajian untuk menghitung total gaji per bulan
+          const gajiPerBulan = {};
+
+          data.penggajian.forEach((entry) => {
+            const month = new Date(entry.tanggal_gajian).toLocaleString("default", { month: "long", year: "numeric" });
+            if (!gajiPerBulan[month]) {
+              gajiPerBulan[month] = 0;
+            }
+            gajiPerBulan[month] += entry.gaji;
+          });
+
+          // Persiapkan data untuk chart
+          const labels = Object.keys(gajiPerBulan);
+          const gajiData = Object.values(gajiPerBulan);
+
+          // Tampilkan grafik dengan Chart.js
+          const ctx = document.getElementById("gajiChart").getContext("2d");
+          new Chart(ctx, {
+            type: "bar", // Jenis grafik (Bar chart)
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: "Total Gaji Per Bulan (Rp)",
+                  data: gajiData,
+                  backgroundColor: "#4a4a8a", // Warna ungu tua
+                  borderColor: "#4a4a8a", // Warna ungu tua
+                  borderWidth: 1
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    callback: function(value) {
+                      return "Rp " + formatNumber(value); // Format Y axis sebagai mata uang
+                    }
+                  }
+                }
+              }
+            }
+          });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    </script>
   </body>
 </html>

@@ -337,3 +337,5 @@ async function exportData() {
     document.body.removeChild(link);
   }
 }
+
+//chart
