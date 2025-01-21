@@ -161,3 +161,79 @@ function logout() {
   window.location.href = "login.html";
 }
 
+// Fungsi untuk mengambil data dari file JSON
+async function loadData() {
+  const response = await fetch("data.json");
+  const data = await response.json();
+  return data;
+}
+
+// Fungsi untuk mengonversi data JSON menjadi CSV, dengan memisahkan ID
+// Fungsi untuk mengonversi data JSON menjadi CSV, tanpa kolom ID dan memastikan pemisahan kolom
+function convertToCSV(objArray, type) {
+  const array = Array.isArray(objArray) ? objArray : Object.values(objArray);
+  let result = "";
+
+  // Menentukan header CSV tanpa kolom ID
+  const headers =
+    type === "penggajian"
+      ? [
+          "tanggal_gajian",
+          "nama_karyawan",
+          "hari_kerja",
+          "gaji_per_hari",
+          "lembur_mingguan",
+          "jam_lembur",
+          "upah_lembur_per_jam",
+          "kasbon",
+          "kasbon_motor",
+          "gaji",
+        ]
+      : [
+          "nama",
+          "gaji_harian",
+          "upah_lembur",
+          "kasbon",
+          "medical",
+        ];
+
+  result += headers.join(",") + "\r\n";
+
+  // Menambahkan data CSV tanpa kolom ID dan memastikan setiap nilai diapit tanda kutip
+  array.forEach((item) => {
+    result +=
+      headers
+        .map((header) => {
+          const key = header.replace("id_", ""); // Mengambil key yang sesuai
+          return `"${item[key] !== undefined ? item[key] : ''}"`; // Membungkus nilai dengan tanda kutip
+        })
+        .join(",") + "\r\n";
+  });
+
+  return result;
+}
+
+// Fungsi untuk mengekspor data ke CSV
+async function exportData() {
+  const data = await loadData(); // Memuat data dari file JSON
+
+  const penggajianCSV = convertToCSV(data.penggajian, "penggajian");
+  const karyawanCSV = convertToCSV(data.karyawan, "karyawan");
+
+  // Gabungkan data penggajian dan karyawan menjadi satu file CSV
+  const finalCSV = `Data Penggajian:\r\n${penggajianCSV}\r\nData Karyawan:\r\n${karyawanCSV}`;
+
+  // Membuat link untuk mengunduh file CSV
+  const blob = new Blob([finalCSV], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  if (link.download !== undefined) {
+    // Mengecek jika fitur download tersedia
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", "exported_data.csv");
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
