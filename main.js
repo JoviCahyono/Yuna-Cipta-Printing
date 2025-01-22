@@ -272,6 +272,59 @@ ipcMain.on("hapusData", (event, rowId) => {
   });
 });
 
+// Menangani event 'updateData' dari renderer process
+ipcMain.handle("updatePenggajian", async (event, updatedData) => {
+  const {
+    id,
+    tanggal_gajian,
+    nama_karyawan,
+    hari_kerja,
+    gaji_per_hari,
+    lembur_mingguan,
+    jam_lembur,
+    upah_lembur_per_jam,
+    kasbon,
+    kasbon_motor,
+  } = updatedData;
+
+  return new Promise((resolve, reject) => {
+    const query = `
+      UPDATE penggajian
+      SET 
+        tanggal_gajian = ?,
+        nama_karyawan = ?,
+        hari_kerja = ?,
+        gaji_per_hari = ?,
+        lembur_mingguan = ?,
+        jam_lembur = ?,
+        upah_lembur_per_jam = ?,
+        kasbon = ?,
+        kasbon_motor = ?
+      WHERE id = ?
+    `;
+    const params = [
+      tanggal_gajian,
+      nama_karyawan,
+      hari_kerja,
+      gaji_per_hari,
+      lembur_mingguan,
+      jam_lembur,
+      upah_lembur_per_jam,
+      kasbon,
+      kasbon_motor,
+      id,
+    ];
+
+    db.run(query, params, function (err) {
+      if (err) {
+        console.error("Error saat mengupdate data penggajian:", err.message);
+        return reject(err);
+      }
+      resolve({ message: "Data berhasil diperbarui", changes: this.changes });
+    });
+  });
+});
+
 // ====================== HANDLER KARYAWAN ======================
 
 // Handler untuk menambah karyawan

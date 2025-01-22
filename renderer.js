@@ -155,6 +155,67 @@ if (openModal && modal && closeModal) {
       }
     });
 
+    // Event submit form edit penggajian
+    const editPenggajianForm = document.getElementById("editPenggajianForm");
+
+    editPenggajianForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Ambil data dari form
+      const id = document.getElementById("editPenggajianId").value;
+      const tanggal_gajian = document.getElementById("editTanggal").value;
+      const nama_karyawan = document.getElementById("editNama").value;
+      const hari_kerja = parseInt(
+        document.getElementById("editHariKerja").value,
+        10
+      );
+      const gaji_per_hari = parseFloat(
+        document.getElementById("editGajiPerHari").value
+      );
+      const lembur_mingguan = parseInt(
+        document.getElementById("editLembur").value,
+        10
+      );
+      const jam_lembur = parseInt(
+        document.getElementById("editJamLembur").value,
+        10
+      );
+      const upah_lembur_per_jam = parseFloat(
+        document.getElementById("editUpahLembur").value
+      );
+      const kasbon = parseFloat(document.getElementById("editKasbon").value);
+      const kasbon_motor = parseFloat(
+        document.getElementById("editKasbonMotor").value
+      );
+
+      // Kirim data ke backend
+      const result = await ipcRenderer.invoke("updatePenggajian", {
+        id,
+        tanggal_gajian,
+        nama_karyawan,
+        hari_kerja,
+        gaji_per_hari,
+        lembur_mingguan,
+        jam_lembur,
+        upah_lembur_per_jam,
+        kasbon,
+        kasbon_motor,
+      });
+
+      if (result && result.message) {
+        console.log(result.message); // Tampilkan pesan sukses
+        alert("Data berhasil diperbarui!");
+
+        // Tutup modal
+        document.getElementById("editPenggajianModal").style.display = "none";
+
+        // Reload data
+        ipcRenderer.send("muatData");
+      } else {
+        alert("Terjadi kesalahan saat memperbarui data.");
+      }
+    });
+
     // Tutup modal
     closeModalBtn.addEventListener("click", () => {
       modal.style.display = "none";
