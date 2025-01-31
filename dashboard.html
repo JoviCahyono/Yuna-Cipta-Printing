@@ -48,7 +48,10 @@
             <a href="#"> <i class="fas fa-warehouse"></i>Gudang </a>
           </li>
           <li>
-            <a href="#"> <i class="fas fa-sign-out-alt"></i>Keluar </a>
+            <a href="javascript:void(0);" onclick="logout();">
+              <i class="fas fa-sign-out-alt"></i>
+              Keluar
+            </a>
           </li>
         </ul>
       </div>
@@ -58,12 +61,6 @@
         <div class="header">
           <h1>Dashboard</h1>
           <div class="user-info">
-            <img
-              alt="User Avatar"
-              height="40"
-              src="https://storage.googleapis.com/a1aa/image/GeLjokFSmRzWOiheT5ltybYeWnby2fP58auwTEXmkMuMkftfE.jpg"
-              width="40"
-            />
             <div>
               <span> Admin </span>
               <br />
@@ -101,6 +98,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="renderer.js"></script>
+    <script src="script.js"></script>
     <script>
       // Parse the JSON data
       // Fungsi untuk memformat angka dengan pemisah ribuan
@@ -137,8 +135,6 @@
           console.error("Error:", error);
         });
 
-
-        
       // Fungsi untuk memformat angka dengan pemisah ribuan
       function formatNumber(num) {
         return new Intl.NumberFormat("id-ID").format(num);
@@ -152,7 +148,10 @@
           const gajiPerBulan = {};
 
           data.penggajian.forEach((entry) => {
-            const month = new Date(entry.tanggal_gajian).toLocaleString("default", { month: "long", year: "numeric" });
+            const month = new Date(entry.tanggal_gajian).toLocaleString(
+              "default",
+              { month: "long", year: "numeric" }
+            );
             if (!gajiPerBulan[month]) {
               gajiPerBulan[month] = 0;
             }
@@ -175,9 +174,9 @@
                   data: gajiData,
                   backgroundColor: "#312F8D", // Warna ungu tua
                   borderColor: "#312F8D", // Warna ungu tua
-                  borderWidth: 1
-                }
-              ]
+                  borderWidth: 1,
+                },
+              ],
             },
             options: {
               responsive: true,
@@ -185,13 +184,13 @@
                 y: {
                   beginAtZero: true,
                   ticks: {
-                    callback: function(value) {
+                    callback: function (value) {
                       return "Rp " + formatNumber(value); // Format Y axis sebagai mata uang
-                    }
-                  }
-                }
-              }
-            }
+                    },
+                  },
+                },
+              },
+            },
           });
         })
         .catch((error) => {

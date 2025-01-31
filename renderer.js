@@ -592,6 +592,7 @@ employeeTableBody.addEventListener("click", (e) => {
           kasbon: kasbonBaru,
           medical: medicalBaru,
         });
+        
 
         // Sembunyikan modal setelah edit
         document.getElementById("editEmployeeModal").style.display = "none";

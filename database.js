@@ -9,10 +9,10 @@ const db = new sqlite3.Database("./penggajian.db", (err) => {
   }
 });
 
-  // Buat tabel penggajian jika belum ada
-  db.serialize(() => {
-    db.run(
-      `
+// Buat tabel penggajian jika belum ada
+db.serialize(() => {
+  db.run(
+    `
       CREATE TABLE IF NOT EXISTS penggajian (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         tanggal_gajian DATE,
@@ -27,18 +27,18 @@ const db = new sqlite3.Database("./penggajian.db", (err) => {
         gaji REAL
       )
     `,
-      (err) => {
-        if (err) {
-          console.error("Error saat membuat tabel penggajian:", err.message);
-        } else {
-          console.log("Tabel penggajian berhasil dibuat.");
-        }
+    (err) => {
+      if (err) {
+        console.error("Error saat membuat tabel penggajian:", err.message);
+      } else {
+        console.log("Tabel penggajian berhasil dibuat.");
       }
-    );
+    }
+  );
 
-    // Buat tabel karyawan jika belum ada
-    db.run(
-      `
+  // Buat tabel karyawan jika belum ada
+  db.run(
+    `
       CREATE TABLE IF NOT EXISTS karyawan (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nama TEXT,
@@ -48,13 +48,12 @@ const db = new sqlite3.Database("./penggajian.db", (err) => {
         medical REAL
       )
     `,
-      (err) => {
-        if (err) {
-          console.error("Error saat membuat tabel karyawan:", err.message);
-        } else {
-          console.log("Tabel karyawan berhasil dibuat.");
-        }
+    (err) => {
+      if (err) {
+        console.error("Error saat membuat tabel karyawan:", err.message);
+      } else {
+        console.log("Tabel karyawan berhasil dibuat.");
       }
-    );
-  });
-
+    }
+  );
+});

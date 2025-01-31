@@ -1,32 +1,6 @@
 {
   "penggajian": [
     {
-      "id": 10,
-      "tanggal_gajian": "2024-12-28",
-      "nama_karyawan": "Jonathan",
-      "hari_kerja": 6,
-      "gaji_per_hari": 100000,
-      "lembur_mingguan": "1",
-      "jam_lembur": 11,
-      "upah_lembur_per_jam": 8000,
-      "kasbon": 0,
-      "kasbon_motor": 0,
-      "gaji": 388000
-    },
-    {
-      "id": 14,
-      "tanggal_gajian": "2024-12-28",
-      "nama_karyawan": "Jovi",
-      "hari_kerja": 6,
-      "gaji_per_hari": 80000,
-      "lembur_mingguan": "1",
-      "jam_lembur": 12,
-      "upah_lembur_per_jam": 8000,
-      "kasbon": 0,
-      "kasbon_motor": 0,
-      "gaji": 576000
-    },
-    {
       "id": 19,
       "tanggal_gajian": "2025-01-14",
       "nama_karyawan": "Ayu",
@@ -118,19 +92,6 @@
       "gaji": 2
     },
     {
-      "id": 29,
-      "tanggal_gajian": "2025-01-21",
-      "nama_karyawan": "02131",
-      "hari_kerja": 1,
-      "gaji_per_hari": 1,
-      "lembur_mingguan": "1",
-      "jam_lembur": 1,
-      "upah_lembur_per_jam": 1,
-      "kasbon": 1,
-      "kasbon_motor": 1,
-      "gaji": 2
-    },
-    {
       "id": 30,
       "tanggal_gajian": "2025-01-21",
       "nama_karyawan": "Huda",
@@ -155,6 +116,32 @@
       "kasbon": 0,
       "kasbon_motor": 0,
       "gaji": 170000
+    },
+    {
+      "id": 32,
+      "tanggal_gajian": "2025-01-22",
+      "nama_karyawan": "Anan",
+      "hari_kerja": 5,
+      "gaji_per_hari": 50000,
+      "lembur_mingguan": "2",
+      "jam_lembur": 22,
+      "upah_lembur_per_jam": 8000,
+      "kasbon": 0,
+      "kasbon_motor": 0,
+      "gaji": 426000
+    },
+    {
+      "id": 33,
+      "tanggal_gajian": "2025-01-22",
+      "nama_karyawan": "Ferdi",
+      "hari_kerja": 6,
+      "gaji_per_hari": 100000,
+      "lembur_mingguan": "1",
+      "jam_lembur": 8,
+      "upah_lembur_per_jam": 10000,
+      "kasbon": 5000000,
+      "kasbon_motor": 0,
+      "gaji": 680000
     }
   ],
   "karyawan": [
@@ -194,17 +181,9 @@
       "id": 12,
       "nama": "Albert",
       "gaji_harian": 891420,
-      "upah_lembur": 10000,
+      "upah_lembur": 10555,
       "kasbon": 122222,
       "medical": 12421
-    },
-    {
-      "id": 13,
-      "nama": "Andika",
-      "gaji_harian": 100000,
-      "upah_lembur": 10000,
-      "kasbon": 1000000,
-      "medical": 1000000
     },
     {
       "id": 14,
@@ -229,6 +208,22 @@
       "upah_lembur": 8000,
       "kasbon": 1000000,
       "medical": 1000000
+    },
+    {
+      "id": 18,
+      "nama": "Farhan",
+      "gaji_harian": 100000,
+      "upah_lembur": 90000,
+      "kasbon": 1000000,
+      "medical": 1000000
+    },
+    {
+      "id": 19,
+      "nama": "Ferdi",
+      "gaji_harian": 100000,
+      "upah_lembur": 10000,
+      "kasbon": 5000000,
+      "medical": 600000
     }
   ]
 }
